@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Calendar | Team Just Respect",
+  description: "View the Team Just Respect schedule - practices, games, tournaments, and events.",
+};
 
 // Set your Google Calendar ID in .env.local
 // NEXT_PUBLIC_GOOGLE_CALENDAR_ID=your_calendar_id_here

@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TeamCard from "@/components/TeamCard";
 import { teamMembers } from "@/lib/team-data";
+
+export const metadata: Metadata = {
+  title: "Our Team | Team Just Respect",
+  description: "Meet the coaches and directors of Team Just Respect AAU Basketball Program.",
+};
 
 export default function TeamPage(): React.ReactNode {
   const directors = teamMembers.filter((m) => m.role === "Director");

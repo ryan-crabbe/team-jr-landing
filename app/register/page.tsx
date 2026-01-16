@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Team Just Respect",
+  description: "Contact Team Just Respect to register or learn more about our AAU basketball program.",
+};
 
 interface DirectorContact {
   name: string;
