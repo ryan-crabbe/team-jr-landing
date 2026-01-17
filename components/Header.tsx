@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Logo from "./Logo";
 
-const navLinks = [
+const leftLinks = [
   { href: "/", label: "Home" },
   { href: "/calendar", label: "Calendar" },
+];
+
+const rightLinks = [
   { href: "/team", label: "Team" },
-  { href: "/register", label: "Register" },
+  { href: "/register", label: "Join Us" },
 ];
 
 export default function Header(): React.ReactNode {
@@ -18,19 +20,33 @@ export default function Header(): React.ReactNode {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const linkStyles =
+    "text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:text-orange-500";
+
   return (
     <header className="absolute left-0 top-0 z-50 w-full">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Logo />
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        {/* Left Navigation */}
+        <nav className="hidden items-center gap-10 md:flex">
+          {leftLinks.map((link) => (
+            <Link key={link.href} href={link.href} className={linkStyles}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-white transition-colors hover:text-orange-500"
-            >
+        {/* Center Logo */}
+        <Link
+          href="/"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 text-lg font-bold text-white transition-transform hover:scale-110"
+        >
+          JR
+        </Link>
+
+        {/* Right Navigation */}
+        <nav className="hidden items-center gap-10 md:flex">
+          {rightLinks.map((link) => (
+            <Link key={link.href} href={link.href} className={linkStyles}>
               {link.label}
             </Link>
           ))}
@@ -58,11 +74,11 @@ export default function Header(): React.ReactNode {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <nav className="border-t border-white/10 bg-black/95 px-6 py-4 md:hidden">
-          {navLinks.map((link) => (
+          {[...leftLinks, ...rightLinks].map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="block py-3 text-sm font-medium text-white transition-colors hover:text-orange-500"
+              className="block py-3 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:text-orange-500"
               onClick={toggleMenu}
             >
               {link.label}
